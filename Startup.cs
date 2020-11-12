@@ -49,10 +49,7 @@ namespace FashionWebsite.API
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Products}/{action=getAllProducts}/{id?}"
-                    );
+                endpoints.MapControllers();
             });
         }
     }

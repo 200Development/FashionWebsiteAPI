@@ -8,10 +8,8 @@ using Microsoft.Extensions.Logging;
 namespace FashionWebsite.API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
     public class SalesController : ControllerBase
     {
-
         private readonly ILogger<SalesController> _logger;
 
         public SalesController(ILogger<SalesController> logger)
@@ -20,8 +18,8 @@ namespace FashionWebsite.API.Controllers
         }
 
         [HttpGet]
-        [Route("getSalesGraph")]
-        public SalesGraphModel GetSalesGraphDataModel()
+        [Route("Sales/SalesGraph")]
+        public SalesGraphModel SalesGraph()
         {
             var sales = GetSales();
 

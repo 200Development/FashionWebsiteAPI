@@ -7,7 +7,6 @@ using Microsoft.Extensions.Logging;
 namespace FashionWebsite.API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
     public class ProductsController : ControllerBase
     {
 
@@ -19,6 +18,7 @@ namespace FashionWebsite.API.Controllers
         }
 
         [HttpPost]
+        [Route("Products")]
         public Product AddProduct(Product product)
         {
             try
@@ -32,8 +32,9 @@ namespace FashionWebsite.API.Controllers
         }
 
         [HttpGet]
-        [Route("getAllProducts")]
-        public IEnumerable<Product> GetAllProducts()
+        [Route("")]
+        [Route("Products")]
+        public IEnumerable<Product> GetProducts()
         {
             var products = new List<Product>();
             var product1 = new Product
