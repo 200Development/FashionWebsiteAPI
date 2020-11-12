@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using FashionWebsite.API.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -11,10 +10,6 @@ namespace FashionWebsite.API.Controllers
     [Route("[controller]")]
     public class ProductsController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
 
         private readonly ILogger<ProductsController> _logger;
 
@@ -23,17 +18,58 @@ namespace FashionWebsite.API.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
+        [HttpPost]
+        public Product AddProduct(Product product)
         {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            try
             {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
-            })
-            .ToArray();
+                return new Product();
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
+        [HttpGet]
+        [Route("getAllProducts")]
+        public IEnumerable<Product> GetAllProducts()
+        {
+            var products = new List<Product>();
+            var product1 = new Product
+            {
+                ProductId = 1,
+                ProductName = "Baby Shoes 1",
+                Description = "Description of baby shoes 1",
+                UnitPrice = 54.33m,
+                ImageUrl = "assets/jordan-1-baby-crib-bootie-0ZXFgC-removebg-preview.png",
+                AvailableInventory = 12
+            };
+            products.Add(product1);
+
+            var product2 = new Product
+            {
+                ProductId = 2,
+                ProductName = "Baby Shoes 2",
+                Description = "Description of baby shoes 2",
+                UnitPrice = 22.59m,
+                ImageUrl = "assets/white_sneakers-removebg-preview.png",
+                AvailableInventory = 12
+            };
+            products.Add(product2);
+
+            var product3 = new Product
+            {
+                ProductId = 3,
+                ProductName = "Baby Shoes 3",
+                Description = "Description of baby shoes 3",
+                UnitPrice = 34.99m,
+                ImageUrl = "assets/white_sneakers-removebg-preview.png",
+                AvailableInventory = 12
+            };
+            products.Add(product2);
+
+            return products;
         }
     }
 }
