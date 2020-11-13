@@ -3,3 +3,6 @@
 ################################################################################
 
 /FashionWebsite.API.csproj.user
+/Content/Images/Products
+/bin
+/obj
