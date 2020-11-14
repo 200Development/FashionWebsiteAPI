@@ -17,13 +17,19 @@ namespace FashionWebsite.API.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
-        [Route("Sales/SalesGraph")]
-        public SalesGraphModel SalesGraph()
+        [HttpGet("sales/graph")]
+        public IActionResult SalesGraph()
         {
-            var sales = GetSales();
+            try
+            {
+                var sales = GetSales();
 
-            return BuildMockSalesGraphModel(sales);
+                return new JsonResult(BuildMockSalesGraphModel(sales));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         private IEnumerable<Order> GetSales()

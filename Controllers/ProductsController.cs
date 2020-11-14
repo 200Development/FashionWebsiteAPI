@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using FashionWebsite.API.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -17,24 +16,14 @@ namespace FashionWebsite.API.Controllers
             _logger = logger;
         }
 
-        [HttpPost]
-        [Route("Products")]
-        public Product AddProduct(Product product)
+        [HttpPost("products")]
+        public IActionResult Create(Product product)
         {
-            try
-            {
-                return new Product();
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
+            return new JsonResult(new Product());
         }
 
-        [HttpGet]
-        [Route("")]
-        [Route("Products")]
-        public IEnumerable<Product> GetProducts()
+        [HttpGet("products")]
+        public ActionResult<IEnumerable<Product>> Get()
         {
             var products = new List<Product>();
             var product1 = new Product
@@ -70,7 +59,7 @@ namespace FashionWebsite.API.Controllers
             };
             products.Add(product2);
 
-            return products;
+            return Ok(products);
         }
     }
 }
